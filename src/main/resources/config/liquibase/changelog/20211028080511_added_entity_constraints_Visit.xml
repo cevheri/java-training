@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+    <!--
+        Added the constraints for entity Visit.
+    -->
+    <changeSet id="20211028080511-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="patient_id"
+                                 baseTableName="visit"
+                                 constraintName="fk_visit__patient_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="patient"/>
+
+        <addForeignKeyConstraint baseColumnNames="doctor_id"
+                                 baseTableName="visit"
+                                 constraintName="fk_visit__doctor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="doctor"/>
+
+        <addForeignKeyConstraint baseColumnNames="department_id"
+                                 baseTableName="visit"
+                                 constraintName="fk_visit__department_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="department"/>
+
+        <addForeignKeyConstraint baseColumnNames="visit_id"
+                                 baseTableName="rel_visit__visit_service"
+                                 constraintName="fk_rel_visit__visit_service__visit_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="visit"/>
+
+        <addForeignKeyConstraint baseColumnNames="visit_service_id"
+                                 baseTableName="rel_visit__visit_service"
+                                 constraintName="fk_rel_visit__visit_service__visit_service_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="visit_service"/>
+    </changeSet>
+</databaseChangeLog>

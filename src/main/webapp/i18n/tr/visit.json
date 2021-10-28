@@ -1,0 +1,29 @@
+{
+  "javaTrainingApp": {
+    "visit": {
+      "home": {
+        "title": "Visits",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Visit",
+        "createOrEditLabel": "Create or edit a Visit",
+        "notFound": "No Visits found"
+      },
+      "created": "A new Visit is created with identifier {{ param }}",
+      "updated": "A Visit is updated with identifier {{ param }}",
+      "deleted": "A Visit is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Visit {{ id }}?"
+      },
+      "detail": {
+        "title": "Visit"
+      },
+      "id": "ID",
+      "date": "Date",
+      "type": "Type",
+      "patient": "Patient",
+      "doctor": "Doctor",
+      "department": "Department",
+      "visitService": "Visit Service"
+    }
+  }
+}

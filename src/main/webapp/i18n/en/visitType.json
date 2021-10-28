@@ -1,0 +1,9 @@
+{
+  "javaTrainingApp": {
+    "VisitType": {
+      "null": "",
+      "EXAMINATION": "EXAMINATION",
+      "ANALYSIS": "ANALYSIS"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "javaTrainingApp": {
+    "DepartmentType": {
+      "null": "",
+      "SERVICE": "SERVICE",
+      "POLYCLINIC": "POLYCLINIC"
+    }
+  }
+}

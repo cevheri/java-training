@@ -42,6 +42,8 @@
     "clientPackageManager": "npm",
     "clientThemeVariant": "",
     "languages": ["en", "tr"],
-    "enableGradleEnterprise": false
+    "enableGradleEnterprise": false,
+    "entities": ["Patient", "Department", "Doctor", "VisitService", "Visit"],
+    "lastLiquibaseTimestamp": 1635408311000
   }
 }

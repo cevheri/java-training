@@ -11,6 +11,16 @@ import activate from 'app/modules/account/activate/activate.reducer';
 import password from 'app/modules/account/password/password.reducer';
 import settings from 'app/modules/account/settings/settings.reducer';
 import passwordReset from 'app/modules/account/password-reset/password-reset.reducer';
+// prettier-ignore
+import patient from 'app/entities/patient/patient.reducer';
+// prettier-ignore
+import department from 'app/entities/department/department.reducer';
+// prettier-ignore
+import doctor from 'app/entities/doctor/doctor.reducer';
+// prettier-ignore
+import visitService from 'app/entities/visit-service/visit-service.reducer';
+// prettier-ignore
+import visit from 'app/entities/visit/visit.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 const rootReducer = {
@@ -24,6 +34,11 @@ const rootReducer = {
   passwordReset,
   password,
   settings,
+  patient,
+  department,
+  doctor,
+  visitService,
+  visit,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar,
 };

@@ -48,6 +48,15 @@ public class CacheConfiguration {
             createCache(cm, tr.com.cevher.java.domain.User.class.getName());
             createCache(cm, tr.com.cevher.java.domain.Authority.class.getName());
             createCache(cm, tr.com.cevher.java.domain.User.class.getName() + ".authorities");
+            createCache(cm, tr.com.cevher.java.domain.Patient.class.getName());
+            createCache(cm, tr.com.cevher.java.domain.Department.class.getName());
+            createCache(cm, tr.com.cevher.java.domain.Department.class.getName() + ".doctors");
+            createCache(cm, tr.com.cevher.java.domain.Doctor.class.getName());
+            createCache(cm, tr.com.cevher.java.domain.Doctor.class.getName() + ".departments");
+            createCache(cm, tr.com.cevher.java.domain.VisitService.class.getName());
+            createCache(cm, tr.com.cevher.java.domain.VisitService.class.getName() + ".visits");
+            createCache(cm, tr.com.cevher.java.domain.Visit.class.getName());
+            createCache(cm, tr.com.cevher.java.domain.Visit.class.getName() + ".visitServices");
             // jhipster-needle-ehcache-add-entry
         };
     }
