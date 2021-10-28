@@ -119,7 +119,7 @@ export const DepartmentUpdate = (props: RouteComponentProps<{ id: string }>) => 
                 id="department-description"
                 name="description"
                 data-cy="description"
-                type="text"
+                type="textarea"
                 validate={{
                   maxLength: { value: 1000, message: translate('entity.validation.maxlength', { max: 1000 }) },
                 }}
