@@ -22,9 +22,9 @@ a {
 }
 
 .app-container {
-  box-sizing: border-box;
+  box-sizing: content-box !important;
   .view-container {
-    width: 100%;
+    width: 100% !important;
     height: calc(100% - 40px);
     overflow-y: auto;
     overflow-x: hidden;
@@ -42,7 +42,7 @@ a {
 }
 
 .fullscreen {
-  position: fixed;
+  position: fixed !important;
   top: 100px;
   left: 0px;
   width: 99% !important;
@@ -220,7 +220,7 @@ Generic styles
 /* end of padding helpers */
 
 .no-margin {
-  margin: 0px;
+  margin: 100px;
 }
 @mixin voffset($size) {
   @if $size== '' {

@@ -94,6 +94,17 @@ export const PatientUpdate = (props: RouteComponentProps<{ id: string }>) => {
                 }}
               />
               <ValidatedField
+                label={translate('javaTrainingApp.patient.lastname')}
+                id="patient-lastname"
+                name="lastname"
+                data-cy="lastname"
+                type="text"
+                validate={{
+                  required: { value: true, message: translate('entity.validation.required') },
+                  maxLength: { value: 100, message: translate('entity.validation.maxlength', { max: 100 }) },
+                }}
+              />
+              <ValidatedField
                 label={translate('javaTrainingApp.patient.phone')}
                 id="patient-phone"
                 name="phone"

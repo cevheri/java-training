@@ -28,6 +28,11 @@ public class Patient implements Serializable {
     @Column(name = "name", length = 100, nullable = false)
     private String name;
 
+    @NotNull
+    @Size(max = 100)
+    @Column(name = "last_name", length = 100, nullable = false)
+    private String lastname;
+
     @Size(max = 20)
     @Column(name = "phone", length = 20)
     private String phone;
@@ -66,6 +71,19 @@ public class Patient implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getLastname() {
+        return this.lastname;
+    }
+
+    public Patient lastname(String lastname) {
+        this.setLastname(lastname);
+        return this;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getPhone() {
@@ -132,6 +150,7 @@ public class Patient implements Serializable {
         return "Patient{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
+            ", lastname='" + getLastname() + "'" +
             ", phone='" + getPhone() + "'" +
             ", birthDate='" + getBirthDate() + "'" +
             ", citizenNumber='" + getCitizenNumber() + "'" +

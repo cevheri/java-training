@@ -93,6 +93,7 @@ public class UserService {
             });
     }
 
+    /*
     public User registerUser(AdminUserDTO userDTO, String password) {
         userRepository
             .findOneByLogin(userDTO.getLogin().toLowerCase())
@@ -134,7 +135,7 @@ public class UserService {
         log.debug("Created Information for User: {}", newUser);
         return newUser;
     }
-
+*/
     private boolean removeNonActivatedUser(User existingUser) {
         if (existingUser.isActivated()) {
             return false;
