@@ -12,6 +12,7 @@
         "doctor": "Doctor",
         "visitService": "Visit Service",
         "visit": "Visit",
+        "systemSetup": "System Setup",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
