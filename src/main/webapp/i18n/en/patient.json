@@ -19,6 +19,7 @@
       },
       "id": "ID",
       "name": "Name",
+      "lastname": "Last Name",
       "phone": "Phone",
       "birthDate": "Birth Date",
       "citizenNumber": "Citizen Number"
