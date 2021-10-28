@@ -16,6 +16,10 @@ public class PatientDTO implements Serializable {
     @Size(max = 100)
     private String name;
 
+    @NotNull
+    @Size(max = 100)
+    private String lastname;
+
     @Size(max = 20)
     private String phone;
 
@@ -39,6 +43,14 @@ public class PatientDTO implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getPhone() {
@@ -92,6 +104,7 @@ public class PatientDTO implements Serializable {
         return "PatientDTO{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
+            ", lastname='" + getLastname() + "'" +
             ", phone='" + getPhone() + "'" +
             ", birthDate='" + getBirthDate() + "'" +
             ", citizenNumber='" + getCitizenNumber() + "'" +
