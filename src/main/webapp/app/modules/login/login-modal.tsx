@@ -82,14 +82,14 @@ const LoginModal = (props: ILoginModalProps) => {
               <Translate contentKey="login.password.forgot">Did you forget your password?</Translate>
             </Link>
           </Alert>
-          <Alert color="warning">
+          {/*<Alert color="warning">
             <span>
               <Translate contentKey="global.messages.info.register.noaccount">You don&apos;t have an account yet?</Translate>
             </span>{' '}
             <Link to="/account/register">
               <Translate contentKey="global.messages.info.register.link">Register a new account</Translate>
             </Link>
-          </Alert>
+          </Alert>*/}
         </ModalBody>
         <ModalFooter>
           <Button color="secondary" onClick={handleClose} tabIndex={1}>

@@ -36,6 +36,12 @@ export const PatientDetail = (props: RouteComponentProps<{ id: string }>) => {
           </dt>
           <dd>{patientEntity.name}</dd>
           <dt>
+            <span id="lastname">
+              <Translate contentKey="javaTrainingApp.patient.lastname">Last Name</Translate>
+            </span>
+          </dt>
+          <dd>{patientEntity.lastname}</dd>
+          <dt>
             <span id="phone">
               <Translate contentKey="javaTrainingApp.patient.phone">Phone</Translate>
             </span>

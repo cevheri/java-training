@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
-import { Translate, TextFormat, getSortState, JhiPagination, JhiItemCount } from 'react-jhipster';
+import { Translate, getSortState, JhiPagination, JhiItemCount } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { getEntities } from './patient.reducer';
-import { IPatient } from 'app/shared/model/patient.model';
+import { getEntities } from './system-setup.reducer';
+import { ISystemSetup } from 'app/shared/model/system-setup.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/shared/util/pagination.constants';
 import { overridePaginationStateWithQueryParams } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
-export const Patient = (props: RouteComponentProps<{ url: string }>) => {
+export const SystemSetup = (props: RouteComponentProps<{ url: string }>) => {
   const dispatch = useAppDispatch();
 
   const [paginationState, setPaginationState] = useState(
     overridePaginationStateWithQueryParams(getSortState(props.location, ITEMS_PER_PAGE, 'id'), props.location.search)
   );
 
-  const patientList = useAppSelector(state => state.patient.entities);
-  const loading = useAppSelector(state => state.patient.loading);
-  const totalItems = useAppSelector(state => state.patient.totalItems);
+  const systemSetupList = useAppSelector(state => state.systemSetup.entities);
+  const loading = useAppSelector(state => state.systemSetup.loading);
+  const totalItems = useAppSelector(state => state.systemSetup.totalItems);
 
   const getAllEntities = () => {
     dispatch(
@@ -81,59 +81,54 @@ export const Patient = (props: RouteComponentProps<{ url: string }>) => {
 
   return (
     <div>
-      <h2 id="patient-heading" data-cy="PatientHeading">
-        <Translate contentKey="javaTrainingApp.patient.home.title">Patients</Translate>
+      <h2 id="system-setup-heading" data-cy="SystemSetupHeading">
+        <Translate contentKey="javaTrainingApp.systemSetup.home.title">System Setups</Translate>
         <div className="d-flex justify-content-end">
           <Button className="mr-2" color="info" onClick={handleSyncList} disabled={loading}>
             <FontAwesomeIcon icon="sync" spin={loading} />{' '}
-            <Translate contentKey="javaTrainingApp.patient.home.refreshListLabel">Refresh List</Translate>
+            <Translate contentKey="javaTrainingApp.systemSetup.home.refreshListLabel">Refresh List</Translate>
           </Button>
           <Link to={`${match.url}/new`} className="btn btn-primary jh-create-entity" id="jh-create-entity" data-cy="entityCreateButton">
             <FontAwesomeIcon icon="plus" />
             &nbsp;
-            <Translate contentKey="javaTrainingApp.patient.home.createLabel">Create new Patient</Translate>
+            <Translate contentKey="javaTrainingApp.systemSetup.home.createLabel">Create new System Setup</Translate>
           </Link>
         </div>
       </h2>
       <div className="table-responsive">
-        {patientList && patientList.length > 0 ? (
+        {systemSetupList && systemSetupList.length > 0 ? (
           <Table responsive>
             <thead>
               <tr>
                 <th className="hand" onClick={sort('id')}>
-                  <Translate contentKey="javaTrainingApp.patient.id">ID</Translate> <FontAwesomeIcon icon="sort" />
+                  <Translate contentKey="javaTrainingApp.systemSetup.id">ID</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
-                <th className="hand" onClick={sort('name')}>
-                  <Translate contentKey="javaTrainingApp.patient.name">Name</Translate> <FontAwesomeIcon icon="sort" />
+                <th className="hand" onClick={sort('paramKey')}>
+                  <Translate contentKey="javaTrainingApp.systemSetup.paramKey">Param Key</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
-                <th className="hand" onClick={sort('phone')}>
-                  <Translate contentKey="javaTrainingApp.patient.phone">Phone</Translate> <FontAwesomeIcon icon="sort" />
+                <th className="hand" onClick={sort('paramVal')}>
+                  <Translate contentKey="javaTrainingApp.systemSetup.paramVal">Param Val</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
-                <th className="hand" onClick={sort('birthDate')}>
-                  <Translate contentKey="javaTrainingApp.patient.birthDate">Birth Date</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th className="hand" onClick={sort('citizenNumber')}>
-                  <Translate contentKey="javaTrainingApp.patient.citizenNumber">Citizen Number</Translate> <FontAwesomeIcon icon="sort" />
+                <th className="hand" onClick={sort('description')}>
+                  <Translate contentKey="javaTrainingApp.systemSetup.description">Description</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th />
               </tr>
             </thead>
             <tbody>
-              {patientList.map((patient, i) => (
+              {systemSetupList.map((systemSetup, i) => (
                 <tr key={`entity-${i}`} data-cy="entityTable">
                   <td>
-                    <Button tag={Link} to={`${match.url}/${patient.id}`} color="link" size="sm">
-                      {patient.id}
+                    <Button tag={Link} to={`${match.url}/${systemSetup.id}`} color="link" size="sm">
+                      {systemSetup.id}
                     </Button>
                   </td>
-                  <td>{patient.name}</td>
-                  <td>{patient.lastname}</td>
-                  <td>{patient.phone}</td>
-                  <td>{patient.birthDate ? <TextFormat type="date" value={patient.birthDate} format={APP_LOCAL_DATE_FORMAT} /> : null}</td>
-                  <td>{patient.citizenNumber}</td>
+                  <td>{systemSetup.paramKey}</td>
+                  <td>{systemSetup.paramVal}</td>
+                  <td>{systemSetup.description}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
-                      <Button tag={Link} to={`${match.url}/${patient.id}`} color="info" size="sm" data-cy="entityDetailsButton">
+                      <Button tag={Link} to={`${match.url}/${systemSetup.id}`} color="info" size="sm" data-cy="entityDetailsButton">
                         <FontAwesomeIcon icon="eye" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.view">View</Translate>
@@ -141,7 +136,7 @@ export const Patient = (props: RouteComponentProps<{ url: string }>) => {
                       </Button>
                       <Button
                         tag={Link}
-                        to={`${match.url}/${patient.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
+                        to={`${match.url}/${systemSetup.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
                         color="primary"
                         size="sm"
                         data-cy="entityEditButton"
@@ -153,7 +148,7 @@ export const Patient = (props: RouteComponentProps<{ url: string }>) => {
                       </Button>
                       <Button
                         tag={Link}
-                        to={`${match.url}/${patient.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
+                        to={`${match.url}/${systemSetup.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
                         color="danger"
                         size="sm"
                         data-cy="entityDeleteButton"
@@ -172,13 +167,13 @@ export const Patient = (props: RouteComponentProps<{ url: string }>) => {
         ) : (
           !loading && (
             <div className="alert alert-warning">
-              <Translate contentKey="javaTrainingApp.patient.home.notFound">No Patients found</Translate>
+              <Translate contentKey="javaTrainingApp.systemSetup.home.notFound">No System Setups found</Translate>
             </div>
           )
         )}
       </div>
       {totalItems ? (
-        <div className={patientList && patientList.length > 0 ? '' : 'd-none'}>
+        <div className={systemSetupList && systemSetupList.length > 0 ? '' : 'd-none'}>
           <Row className="justify-content-center">
             <JhiItemCount page={paginationState.activePage} total={totalItems} itemsPerPage={paginationState.itemsPerPage} i18nEnabled />
           </Row>
@@ -199,4 +194,4 @@ export const Patient = (props: RouteComponentProps<{ url: string }>) => {
   );
 };
 
-export default Patient;
+export default SystemSetup;

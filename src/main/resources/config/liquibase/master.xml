@@ -20,6 +20,7 @@
     <include file="config/liquibase/changelog/20211028080509_added_entity_Doctor.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20211028080510_added_entity_VisitService.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20211028080511_added_entity_Visit.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20211028140334_added_entity_SystemSetup.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20211028080509_added_entity_constraints_Doctor.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20211028080511_added_entity_constraints_Visit.xml" relativeToChangelogFile="false"/>
