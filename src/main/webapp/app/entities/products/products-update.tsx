@@ -4,23 +4,23 @@ import { Button, Row, Col, FormText } from 'reactstrap';
 import { isNumber, Translate, translate, ValidatedField, ValidatedForm } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { getEntity, updateEntity, createEntity, reset } from './patient.reducer';
-import { IPatient } from 'app/shared/model/patient.model';
+import { getEntity, updateEntity, createEntity, reset } from './products.reducer';
+import { IProducts } from 'app/shared/model/products.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
-export const PatientUpdate = (props: RouteComponentProps<{ id: string }>) => {
+export const ProductsUpdate = (props: RouteComponentProps<{ id: string }>) => {
   const dispatch = useAppDispatch();
 
   const [isNew] = useState(!props.match.params || !props.match.params.id);
 
-  const patientEntity = useAppSelector(state => state.patient.entity);
-  const loading = useAppSelector(state => state.patient.loading);
-  const updating = useAppSelector(state => state.patient.updating);
-  const updateSuccess = useAppSelector(state => state.patient.updateSuccess);
+  const productsEntity = useAppSelector(state => state.products.entity);
+  const loading = useAppSelector(state => state.products.loading);
+  const updating = useAppSelector(state => state.products.updating);
+  const updateSuccess = useAppSelector(state => state.products.updateSuccess);
   const handleClose = () => {
-    props.history.push('/patient' + props.location.search);
+    props.history.push('/products');
   };
 
   useEffect(() => {
@@ -39,7 +39,7 @@ export const PatientUpdate = (props: RouteComponentProps<{ id: string }>) => {
 
   const saveEntity = values => {
     const entity = {
-      ...patientEntity,
+      ...productsEntity,
       ...values,
     };
 
@@ -54,15 +54,15 @@ export const PatientUpdate = (props: RouteComponentProps<{ id: string }>) => {
     isNew
       ? {}
       : {
-          ...patientEntity,
+          ...productsEntity,
         };
 
   return (
     <div>
       <Row className="justify-content-center">
         <Col md="8">
-          <h2 id="javaTrainingApp.patient.home.createOrEditLabel" data-cy="PatientCreateUpdateHeading">
-            <Translate contentKey="javaTrainingApp.patient.home.createOrEditLabel">Create or edit a Patient</Translate>
+          <h2 id="javaTrainingApp.products.home.createOrEditLabel" data-cy="ProductsCreateUpdateHeading">
+            <Translate contentKey="javaTrainingApp.products.home.createOrEditLabel">Create or edit a Products</Translate>
           </h2>
         </Col>
       </Row>
@@ -77,51 +77,40 @@ export const PatientUpdate = (props: RouteComponentProps<{ id: string }>) => {
                   name="id"
                   required
                   readOnly
-                  id="patient-id"
+                  id="products-id"
                   label={translate('global.field.id')}
                   validate={{ required: true }}
                 />
               ) : null}
               <ValidatedField
-                label={translate('javaTrainingApp.patient.name')}
-                id="patient-name"
+                label={translate('javaTrainingApp.products.name')}
+                id="products-name"
                 name="name"
                 data-cy="name"
                 type="text"
-                validate={{
-                  required: { value: true, message: translate('entity.validation.required') },
-                  maxLength: { value: 100, message: translate('entity.validation.maxlength', { max: 100 }) },
-                }}
               />
               <ValidatedField
-                label={translate('javaTrainingApp.patient.phone')}
-                id="patient-phone"
-                name="phone"
-                data-cy="phone"
+                label={translate('javaTrainingApp.products.category')}
+                id="products-category"
+                name="category"
+                data-cy="category"
                 type="text"
-                validate={{
-                  maxLength: { value: 20, message: translate('entity.validation.maxlength', { max: 20 }) },
-                }}
               />
               <ValidatedField
-                label={translate('javaTrainingApp.patient.birthDate')}
-                id="patient-birthDate"
-                name="birthDate"
-                data-cy="birthDate"
-                type="date"
-              />
-              <ValidatedField
-                label={translate('javaTrainingApp.patient.citizenNumber')}
-                id="patient-citizenNumber"
-                name="citizenNumber"
-                data-cy="citizenNumber"
+                label={translate('javaTrainingApp.products.price')}
+                id="products-price"
+                name="price"
+                data-cy="price"
                 type="text"
-                validate={{
-                  required: { value: true, message: translate('entity.validation.required') },
-                  maxLength: { value: 11, message: translate('entity.validation.maxlength', { max: 11 }) },
-                }}
               />
-              <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/patient" replace color="info">
+              <ValidatedField
+                label={translate('javaTrainingApp.products.description')}
+                id="products-description"
+                name="description"
+                data-cy="description"
+                type="text"
+              />
+              <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/products" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
                 <span className="d-none d-md-inline">
@@ -142,4 +131,4 @@ export const PatientUpdate = (props: RouteComponentProps<{ id: string }>) => {
   );
 };
 
-export default PatientUpdate;
+export default ProductsUpdate;

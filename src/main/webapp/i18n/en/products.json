@@ -1,0 +1,27 @@
+{
+  "javaTrainingApp": {
+    "products": {
+      "home": {
+        "title": "Products",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Products",
+        "createOrEditLabel": "Create or edit a Products",
+        "notFound": "No Products found"
+      },
+      "created": "A new Products is created with identifier {{ param }}",
+      "updated": "A Products is updated with identifier {{ param }}",
+      "deleted": "A Products is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Products {{ id }}?"
+      },
+      "detail": {
+        "title": "Products"
+      },
+      "id": "ID",
+      "name": "Name",
+      "category": "Category",
+      "price": "Price",
+      "description": "Description"
+    }
+  }
+}
