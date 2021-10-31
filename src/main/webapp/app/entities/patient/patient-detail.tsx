@@ -61,6 +61,12 @@ export const PatientDetail = (props: RouteComponentProps<{ id: string }>) => {
             </span>
           </dt>
           <dd>{patientEntity.citizenNumber}</dd>
+          <dt>
+            <span id="passportNumber">
+              <Translate contentKey="javaTrainingApp.patient.passportNumber">Citizen Number</Translate>
+            </span>
+          </dt>
+          <dd>{patientEntity.passportNumber}</dd>
         </dl>
         <Button tag={Link} to="/patient" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

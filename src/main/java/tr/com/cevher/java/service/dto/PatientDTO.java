@@ -29,6 +29,10 @@ public class PatientDTO implements Serializable {
     @Size(max = 11)
     private String citizenNumber;
 
+    @NotNull
+    @Size(max = 11)
+    private String passportNumber;
+
     public Long getId() {
         return id;
     }
@@ -77,6 +81,14 @@ public class PatientDTO implements Serializable {
         this.citizenNumber = citizenNumber;
     }
 
+    public String getPassportNumber() {
+        return passportNumber;
+    }
+
+    public void setPassportNumber(String passportNumber) {
+        this.passportNumber = passportNumber;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -108,6 +120,7 @@ public class PatientDTO implements Serializable {
             ", phone='" + getPhone() + "'" +
             ", birthDate='" + getBirthDate() + "'" +
             ", citizenNumber='" + getCitizenNumber() + "'" +
+            ", passportNumber='" + getPassportNumber() + "'" +
             "}";
     }
 }

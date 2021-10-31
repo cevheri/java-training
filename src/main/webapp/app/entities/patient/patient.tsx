@@ -118,6 +118,9 @@ export const Patient = (props: RouteComponentProps<{ url: string }>) => {
                 <th className="hand" onClick={sort('citizenNumber')}>
                   <Translate contentKey="javaTrainingApp.patient.citizenNumber">Citizen Number</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
+                <th className="hand" onClick={sort('passportNumber')}>
+                  <Translate contentKey="javaTrainingApp.patient.passportNumber">Passport Number</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
                 <th />
               </tr>
             </thead>
@@ -134,6 +137,7 @@ export const Patient = (props: RouteComponentProps<{ url: string }>) => {
                   <td>{patient.phone}</td>
                   <td>{patient.birthDate ? <TextFormat type="date" value={patient.birthDate} format={APP_LOCAL_DATE_FORMAT} /> : null}</td>
                   <td>{patient.citizenNumber}</td>
+                  <td>{patient.passportNumber}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${patient.id}`} color="info" size="sm" data-cy="entityDetailsButton">

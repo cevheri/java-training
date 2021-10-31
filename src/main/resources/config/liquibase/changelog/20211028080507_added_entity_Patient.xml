@@ -29,6 +29,9 @@
             <column name="citizen_number" type="varchar(11)">
                 <constraints nullable="false" />
             </column>
+            <column name="passport_number" type="varchar(11)">
+                <constraints nullable="false" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
     </changeSet>
@@ -55,6 +58,7 @@
             <column name="phone" type="string"/>
             <column name="birth_date" type="date"/>
             <column name="citizen_number" type="string"/>
+            <column name="passport_number" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

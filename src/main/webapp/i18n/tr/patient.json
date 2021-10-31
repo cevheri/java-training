@@ -22,7 +22,8 @@
       "lastName": "lastName",
       "phone": "Phone",
       "birthDate": "Birth Date",
-      "citizenNumber": "Citizen Number"
+      "citizenNumber": "Citizen Number",
+      "passportNumber": "Passport Number"
     }
   }
 }

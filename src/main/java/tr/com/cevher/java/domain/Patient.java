@@ -45,6 +45,11 @@ public class Patient implements Serializable {
     @Column(name = "citizen_number", length = 11, nullable = false)
     private String citizenNumber;
 
+    @NotNull
+    @Size(max = 11)
+    @Column(name = "passport_number", length = 11, nullable = false)
+    private String passportNumber;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -125,6 +130,19 @@ public class Patient implements Serializable {
         this.citizenNumber = citizenNumber;
     }
 
+    public String getPassportNumber() {
+        return this.passportNumber;
+    }
+
+    public Patient passportNumber(String passportNumber) {
+        this.setPassportNumber(passportNumber);
+        return this;
+    }
+
+    public void setPassportNumber(String passportNumber) {
+        this.passportNumber = passportNumber;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -154,6 +172,7 @@ public class Patient implements Serializable {
             ", phone='" + getPhone() + "'" +
             ", birthDate='" + getBirthDate() + "'" +
             ", citizenNumber='" + getCitizenNumber() + "'" +
+            ", passportNumber='" + getPassportNumber() + "'" +
             "}";
     }
 }

@@ -7,6 +7,7 @@ export interface IPatient {
   phone?: string | null;
   birthDate?: string | null;
   citizenNumber?: string;
+  passportNumber?: string;
 }
 
 export const defaultValue: Readonly<IPatient> = {};

@@ -132,6 +132,17 @@ export const PatientUpdate = (props: RouteComponentProps<{ id: string }>) => {
                   maxLength: { value: 11, message: translate('entity.validation.maxlength', { max: 11 }) },
                 }}
               />
+              <ValidatedField
+                label={translate('javaTrainingApp.patient.passportNumber')}
+                id="patient-passportNumber"
+                name="passportNumber"
+                data-cy="passportNumber"
+                type="text"
+                validate={{
+                  required: { value: true, message: translate('entity.validation.required') },
+                  maxLength: { value: 11, message: translate('entity.validation.maxlength', { max: 11 }) },
+                }}
+              />
               <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/patient" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
