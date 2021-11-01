@@ -25,12 +25,12 @@ public class Patient implements Serializable {
 
     @NotNull
     @Size(max = 100)
-    @Column(name = "first_Name", length = 100, nullable = false)
+    @Column(name = "first_name", length = 100, nullable = false)
     private String firstName;
 
     @NotNull
     @Size(max = 100)
-    @Column(name = "last_Name", length = 100, nullable = false)
+    @Column(name = "last_name", length = 100, nullable = false)
     private String lastName;
 
     @Size(max = 20)
@@ -82,7 +82,7 @@ public class Patient implements Serializable {
         return this.lastName;
     }
 
-    public Patient name(String lastName) {
+    public Patient lastName(String lastName) {
         this.setLastName(lastName);
         return this;
     }

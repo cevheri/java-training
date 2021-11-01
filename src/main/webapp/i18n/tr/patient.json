@@ -18,8 +18,8 @@
         "title": "Patient"
       },
       "id": "ID",
-      "firstName": "firstName",
-      "lastName": "lastName",
+      "firstName": "First Name",
+      "lastName": "Last Name",
       "phone": "Phone",
       "birthDate": "Birth Date",
       "citizenNumber": "Citizen Number",
