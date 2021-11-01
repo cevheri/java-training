@@ -25,6 +25,8 @@ import visit from 'app/entities/visit/visit.reducer';
 import systemSetup from 'app/entities/system-setup/system-setup.reducer';
 // prettier-ignore
 import products from 'app/entities/products/products.reducer';
+// prettier-ignore
+import company from 'app/entities/company/company.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 const rootReducer = {
@@ -45,6 +47,7 @@ const rootReducer = {
   visit,
   systemSetup,
   products,
+  company,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar,
 };
