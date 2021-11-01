@@ -18,10 +18,12 @@
         "title": "Patient"
       },
       "id": "ID",
-      "name": "Name",
+      "firstName": "firstName",
+      "lastName": "lastName",
       "phone": "Phone",
       "birthDate": "Birth Date",
-      "citizenNumber": "Citizen Number"
+      "citizenNumber": "Citizen Number",
+      "passportNumber": "Passport Number"
     }
   }
 }

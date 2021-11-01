@@ -30,11 +30,17 @@ export const PatientDetail = (props: RouteComponentProps<{ id: string }>) => {
           </dt>
           <dd>{patientEntity.id}</dd>
           <dt>
-            <span id="name">
-              <Translate contentKey="javaTrainingApp.patient.name">Name</Translate>
+            <span id="firstName">
+              <Translate contentKey="javaTrainingApp.patient.firstName"></Translate>
             </span>
           </dt>
-          <dd>{patientEntity.name}</dd>
+          <dd>{patientEntity.firstName}</dd>
+          <dt>
+            <span id="lastName">
+              <Translate contentKey="javaTrainingApp.patient.lastName"></Translate>
+            </span>
+          </dt>
+          <dd>{patientEntity.lastName}</dd>
           <dt>
             <span id="phone">
               <Translate contentKey="javaTrainingApp.patient.phone">Phone</Translate>
@@ -55,6 +61,12 @@ export const PatientDetail = (props: RouteComponentProps<{ id: string }>) => {
             </span>
           </dt>
           <dd>{patientEntity.citizenNumber}</dd>
+          <dt>
+            <span id="passportNumber">
+              <Translate contentKey="javaTrainingApp.patient.passportNumber">Citizen Number</Translate>
+            </span>
+          </dt>
+          <dd>{patientEntity.passportNumber}</dd>
         </dl>
         <Button tag={Link} to="/patient" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}
