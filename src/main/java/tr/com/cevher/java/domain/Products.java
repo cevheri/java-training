@@ -1,19 +1,17 @@
 package tr.com.cevher.java.domain;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import javax.persistence.*;
-import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 /**
- * A Patient.
+ * A Products.
  */
 @Entity
-@Table(name = "patient")
+@Table(name = "products")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class Patient implements Serializable {
+public class Products implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -23,22 +21,17 @@ public class Patient implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @NotNull
-    @Size(max = 100)
-    @Column(name = "name", length = 100, nullable = false)
+    @Column(name = "name")
     private String name;
 
-    @Size(max = 20)
-    @Column(name = "phone", length = 20)
-    private String phone;
+    @Column(name = "category")
+    private String category;
 
-    @Column(name = "birth_date")
-    private LocalDate birthDate;
+    @Column(name = "price")
+    private Integer price;
 
-    @NotNull
-    @Size(max = 11)
-    @Column(name = "citizen_number", length = 11, nullable = false)
-    private String citizenNumber;
+    @Column(name = "description")
+    private String description;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -46,7 +39,7 @@ public class Patient implements Serializable {
         return this.id;
     }
 
-    public Patient id(Long id) {
+    public Products id(Long id) {
         this.setId(id);
         return this;
     }
@@ -59,7 +52,7 @@ public class Patient implements Serializable {
         return this.name;
     }
 
-    public Patient name(String name) {
+    public Products name(String name) {
         this.setName(name);
         return this;
     }
@@ -68,43 +61,43 @@ public class Patient implements Serializable {
         this.name = name;
     }
 
-    public String getPhone() {
-        return this.phone;
+    public String getCategory() {
+        return this.category;
     }
 
-    public Patient phone(String phone) {
-        this.setPhone(phone);
+    public Products category(String category) {
+        this.setCategory(category);
         return this;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public LocalDate getBirthDate() {
-        return this.birthDate;
+    public Integer getPrice() {
+        return this.price;
     }
 
-    public Patient birthDate(LocalDate birthDate) {
-        this.setBirthDate(birthDate);
+    public Products price(Integer price) {
+        this.setPrice(price);
         return this;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 
-    public String getCitizenNumber() {
-        return this.citizenNumber;
+    public String getDescription() {
+        return this.description;
     }
 
-    public Patient citizenNumber(String citizenNumber) {
-        this.setCitizenNumber(citizenNumber);
+    public Products description(String description) {
+        this.setDescription(description);
         return this;
     }
 
-    public void setCitizenNumber(String citizenNumber) {
-        this.citizenNumber = citizenNumber;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
@@ -114,10 +107,10 @@ public class Patient implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Patient)) {
+        if (!(o instanceof Products)) {
             return false;
         }
-        return id != null && id.equals(((Patient) o).id);
+        return id != null && id.equals(((Products) o).id);
     }
 
     @Override
@@ -129,12 +122,12 @@ public class Patient implements Serializable {
     // prettier-ignore
     @Override
     public String toString() {
-        return "Patient{" +
+        return "Products{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
-            ", phone='" + getPhone() + "'" +
-            ", birthDate='" + getBirthDate() + "'" +
-            ", citizenNumber='" + getCitizenNumber() + "'" +
+            ", category='" + getCategory() + "'" +
+            ", price=" + getPrice() +
+            ", description='" + getDescription() + "'" +
             "}";
     }
 }

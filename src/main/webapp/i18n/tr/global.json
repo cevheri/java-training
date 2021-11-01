@@ -13,6 +13,7 @@
         "visitService": "Visit Service",
         "visit": "Visit",
         "systemSetup": "System Setup",
+        "products": "Products",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

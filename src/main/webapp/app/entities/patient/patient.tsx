@@ -127,7 +127,6 @@ export const Patient = (props: RouteComponentProps<{ url: string }>) => {
                     </Button>
                   </td>
                   <td>{patient.name}</td>
-                  <td>{patient.lastname}</td>
                   <td>{patient.phone}</td>
                   <td>{patient.birthDate ? <TextFormat type="date" value={patient.birthDate} format={APP_LOCAL_DATE_FORMAT} /> : null}</td>
                   <td>{patient.citizenNumber}</td>
