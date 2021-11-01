@@ -4,28 +4,23 @@ import { Button, Row, Col, FormText } from 'reactstrap';
 import { isNumber, Translate, translate, ValidatedField, ValidatedForm } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { IDoctor } from 'app/shared/model/doctor.model';
-import { getEntities as getDoctors } from 'app/entities/doctor/doctor.reducer';
-import { getEntity, updateEntity, createEntity, reset } from './department.reducer';
-import { IDepartment } from 'app/shared/model/department.model';
+import { getEntity, updateEntity, createEntity, reset } from './system-setup.reducer';
+import { ISystemSetup } from 'app/shared/model/system-setup.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
-import { DepartmentType } from 'app/shared/model/enumerations/department-type.model';
 
-export const DepartmentUpdate = (props: RouteComponentProps<{ id: string }>) => {
+export const SystemSetupUpdate = (props: RouteComponentProps<{ id: string }>) => {
   const dispatch = useAppDispatch();
 
   const [isNew] = useState(!props.match.params || !props.match.params.id);
 
-  const doctors = useAppSelector(state => state.doctor.entities);
-  const departmentEntity = useAppSelector(state => state.department.entity);
-  const loading = useAppSelector(state => state.department.loading);
-  const updating = useAppSelector(state => state.department.updating);
-  const updateSuccess = useAppSelector(state => state.department.updateSuccess);
-  const departmentTypeValues = Object.keys(DepartmentType);
+  const systemSetupEntity = useAppSelector(state => state.systemSetup.entity);
+  const loading = useAppSelector(state => state.systemSetup.loading);
+  const updating = useAppSelector(state => state.systemSetup.updating);
+  const updateSuccess = useAppSelector(state => state.systemSetup.updateSuccess);
   const handleClose = () => {
-    props.history.push('/department' + props.location.search);
+    props.history.push('/system-setup' + props.location.search);
   };
 
   useEffect(() => {
@@ -34,8 +29,6 @@ export const DepartmentUpdate = (props: RouteComponentProps<{ id: string }>) => 
     } else {
       dispatch(getEntity(props.match.params.id));
     }
-
-    dispatch(getDoctors({}));
   }, []);
 
   useEffect(() => {
@@ -46,7 +39,7 @@ export const DepartmentUpdate = (props: RouteComponentProps<{ id: string }>) => 
 
   const saveEntity = values => {
     const entity = {
-      ...departmentEntity,
+      ...systemSetupEntity,
       ...values,
     };
 
@@ -61,16 +54,15 @@ export const DepartmentUpdate = (props: RouteComponentProps<{ id: string }>) => 
     isNew
       ? {}
       : {
-          type: 'SERVICE',
-          ...departmentEntity,
+          ...systemSetupEntity,
         };
 
   return (
     <div>
       <Row className="justify-content-center">
         <Col md="8">
-          <h2 id="javaTrainingApp.department.home.createOrEditLabel" data-cy="DepartmentCreateUpdateHeading">
-            <Translate contentKey="javaTrainingApp.department.home.createOrEditLabel">Create or edit a Department</Translate>
+          <h2 id="javaTrainingApp.systemSetup.home.createOrEditLabel" data-cy="SystemSetupCreateUpdateHeading">
+            <Translate contentKey="javaTrainingApp.systemSetup.home.createOrEditLabel">Create or edit a SystemSetup</Translate>
           </h2>
         </Col>
       </Row>
@@ -85,54 +77,36 @@ export const DepartmentUpdate = (props: RouteComponentProps<{ id: string }>) => 
                   name="id"
                   required
                   readOnly
-                  id="department-id"
+                  id="system-setup-id"
                   label={translate('global.field.id')}
                   validate={{ required: true }}
                 />
               ) : null}
               <ValidatedField
-                label={translate('javaTrainingApp.department.name')}
-                id="department-name"
-                name="name"
-                data-cy="name"
+                label={translate('javaTrainingApp.systemSetup.paramKey')}
+                id="system-setup-paramKey"
+                name="paramKey"
+                data-cy="paramKey"
                 type="text"
                 validate={{
                   required: { value: true, message: translate('entity.validation.required') },
-                  maxLength: { value: 200, message: translate('entity.validation.maxlength', { max: 200 }) },
                 }}
               />
               <ValidatedField
-                label={translate('javaTrainingApp.department.type')}
-                id="department-type"
-                name="type"
-                data-cy="type"
-                type="select"
-              >
-                {departmentTypeValues.map(departmentType => (
-                  <option value={departmentType} key={departmentType}>
-                    {translate('javaTrainingApp.DepartmentType' + departmentType)}
-                  </option>
-                ))}
-              </ValidatedField>
+                label={translate('javaTrainingApp.systemSetup.paramVal')}
+                id="system-setup-paramVal"
+                name="paramVal"
+                data-cy="paramVal"
+                type="text"
+              />
               <ValidatedField
-                label={translate('javaTrainingApp.department.description')}
-                id="department-description"
+                label={translate('javaTrainingApp.systemSetup.description')}
+                id="system-setup-description"
                 name="description"
                 data-cy="description"
-                type="textarea"
-                validate={{
-                  maxLength: { value: 1000, message: translate('entity.validation.maxlength', { max: 1000 }) },
-                }}
+                type="text"
               />
-              <ValidatedField
-                label={translate('javaTrainingApp.department.active')}
-                id="department-active"
-                name="active"
-                data-cy="active"
-                check
-                type="checkbox"
-              />
-              <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/department" replace color="info">
+              <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/system-setup" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
                 <span className="d-none d-md-inline">
@@ -153,4 +127,4 @@ export const DepartmentUpdate = (props: RouteComponentProps<{ id: string }>) => 
   );
 };
 
-export default DepartmentUpdate;
+export default SystemSetupUpdate;

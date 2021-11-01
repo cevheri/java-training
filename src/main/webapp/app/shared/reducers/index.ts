@@ -23,6 +23,10 @@ import visitService from 'app/entities/visit-service/visit-service.reducer';
 import visit from 'app/entities/visit/visit.reducer';
 // prettier-ignore
 import company from 'app/entities/company/company.reducer';
+// prettier-ignore
+import systemSetup from 'app/entities/system-setup/system-setup.reducer';
+// prettier-ignore
+import products from 'app/entities/products/products.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 const rootReducer = {
@@ -41,6 +45,8 @@ const rootReducer = {
   doctor,
   visitService,
   visit,
+  systemSetup,
+  products,
   company,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar,
