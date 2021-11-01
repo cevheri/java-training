@@ -14,11 +14,7 @@ public class PatientDTO implements Serializable {
 
     @NotNull
     @Size(max = 100)
-    private String firstName;
-
-    @NotNull
-    @Size(max = 100)
-    private String lastName;
+    private String name;
 
     @Size(max = 20)
     private String phone;
@@ -29,10 +25,6 @@ public class PatientDTO implements Serializable {
     @Size(max = 11)
     private String citizenNumber;
 
-    @NotNull
-    @Size(max = 11)
-    private String passportNumber;
-
     public Long getId() {
         return id;
     }
@@ -41,20 +33,12 @@ public class PatientDTO implements Serializable {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPhone() {
@@ -79,14 +63,6 @@ public class PatientDTO implements Serializable {
 
     public void setCitizenNumber(String citizenNumber) {
         this.citizenNumber = citizenNumber;
-    }
-
-    public String getPassportNumber() {
-        return passportNumber;
-    }
-
-    public void setPassportNumber(String passportNumber) {
-        this.passportNumber = passportNumber;
     }
 
     @Override
@@ -115,12 +91,10 @@ public class PatientDTO implements Serializable {
     public String toString() {
         return "PatientDTO{" +
             "id=" + getId() +
-            ", firstName='" + getFirstName() + "'" +
-            ", lastName='" + getLastName() + "'" +
+            ", name='" + getName() + "'" +
             ", phone='" + getPhone() + "'" +
             ", birthDate='" + getBirthDate() + "'" +
             ", citizenNumber='" + getCitizenNumber() + "'" +
-            ", passportNumber='" + getPassportNumber() + "'" +
             "}";
     }
 }

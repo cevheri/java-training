@@ -114,7 +114,7 @@ class PatientResourceIT {
         List<Patient> patientList = patientRepository.findAll();
         assertThat(patientList).hasSize(databaseSizeBeforeCreate + 1);
         Patient testPatient = patientList.get(patientList.size() - 1);
-        assertThat(testPatient.getFirstName()).isEqualTo(DEFAULT_NAME);
+        assertThat(testPatient.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testPatient.getPhone()).isEqualTo(DEFAULT_PHONE);
         assertThat(testPatient.getBirthDate()).isEqualTo(DEFAULT_BIRTH_DATE);
         assertThat(testPatient.getCitizenNumber()).isEqualTo(DEFAULT_CITIZEN_NUMBER);
@@ -144,7 +144,7 @@ class PatientResourceIT {
     void checkNameIsRequired() throws Exception {
         int databaseSizeBeforeTest = patientRepository.findAll().size();
         // set the field null
-        patient.setFirstName(null);
+        patient.setName(null);
 
         // Create the Patient, which fails.
         PatientDTO patientDTO = patientMapper.toDto(patient);
@@ -245,7 +245,7 @@ class PatientResourceIT {
         List<Patient> patientList = patientRepository.findAll();
         assertThat(patientList).hasSize(databaseSizeBeforeUpdate);
         Patient testPatient = patientList.get(patientList.size() - 1);
-        assertThat(testPatient.getFirstName()).isEqualTo(UPDATED_NAME);
+        assertThat(testPatient.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testPatient.getPhone()).isEqualTo(UPDATED_PHONE);
         assertThat(testPatient.getBirthDate()).isEqualTo(UPDATED_BIRTH_DATE);
         assertThat(testPatient.getCitizenNumber()).isEqualTo(UPDATED_CITIZEN_NUMBER);
@@ -342,7 +342,7 @@ class PatientResourceIT {
         List<Patient> patientList = patientRepository.findAll();
         assertThat(patientList).hasSize(databaseSizeBeforeUpdate);
         Patient testPatient = patientList.get(patientList.size() - 1);
-        assertThat(testPatient.getFirstName()).isEqualTo(UPDATED_NAME);
+        assertThat(testPatient.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testPatient.getPhone()).isEqualTo(UPDATED_PHONE);
         assertThat(testPatient.getBirthDate()).isEqualTo(UPDATED_BIRTH_DATE);
         assertThat(testPatient.getCitizenNumber()).isEqualTo(UPDATED_CITIZEN_NUMBER);
@@ -374,7 +374,7 @@ class PatientResourceIT {
         List<Patient> patientList = patientRepository.findAll();
         assertThat(patientList).hasSize(databaseSizeBeforeUpdate);
         Patient testPatient = patientList.get(patientList.size() - 1);
-        assertThat(testPatient.getFirstName()).isEqualTo(UPDATED_NAME);
+        assertThat(testPatient.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testPatient.getPhone()).isEqualTo(UPDATED_PHONE);
         assertThat(testPatient.getBirthDate()).isEqualTo(UPDATED_BIRTH_DATE);
         assertThat(testPatient.getCitizenNumber()).isEqualTo(UPDATED_CITIZEN_NUMBER);

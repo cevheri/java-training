@@ -2,13 +2,7 @@
   "name": "Patient",
   "fields": [
     {
-      "fieldName": "firstName",
-      "fieldType": "String",
-      "fieldValidateRules": ["maxlength", "required"],
-      "fieldValidateRulesMaxlength": "100"
-    },
-    {
-      "fieldName": "lastName",
+      "fieldName": "name",
       "fieldType": "String",
       "fieldValidateRules": ["maxlength", "required"],
       "fieldValidateRulesMaxlength": "100"
@@ -25,12 +19,6 @@
     },
     {
       "fieldName": "citizenNumber",
-      "fieldType": "String",
-      "fieldValidateRules": ["maxlength", "required"],
-      "fieldValidateRulesMaxlength": "11"
-    },
-    {
-      "fieldName": "passportNumber",
       "fieldType": "String",
       "fieldValidateRules": ["maxlength", "required"],
       "fieldValidateRulesMaxlength": "11"

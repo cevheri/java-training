@@ -25,13 +25,8 @@ public class Patient implements Serializable {
 
     @NotNull
     @Size(max = 100)
-    @Column(name = "first_Name", length = 100, nullable = false)
-    private String firstName;
-
-    @NotNull
-    @Size(max = 100)
-    @Column(name = "last_Name", length = 100, nullable = false)
-    private String lastName;
+    @Column(name = "name", length = 100, nullable = false)
+    private String name;
 
     @Size(max = 20)
     @Column(name = "phone", length = 20)
@@ -44,11 +39,6 @@ public class Patient implements Serializable {
     @Size(max = 11)
     @Column(name = "citizen_number", length = 11, nullable = false)
     private String citizenNumber;
-
-    @NotNull
-    @Size(max = 11)
-    @Column(name = "passport_number", length = 11, nullable = false)
-    private String passportNumber;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -65,30 +55,17 @@ public class Patient implements Serializable {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return this.firstName;
+    public String getName() {
+        return this.name;
     }
 
-    public Patient firstName(String firstName) {
-        this.setFirstName(firstName);
+    public Patient name(String name) {
+        this.setName(name);
         return this;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return this.lastName;
-    }
-
-    public Patient name(String lastName) {
-        this.setLastName(lastName);
-        return this;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPhone() {
@@ -130,19 +107,6 @@ public class Patient implements Serializable {
         this.citizenNumber = citizenNumber;
     }
 
-    public String getPassportNumber() {
-        return this.passportNumber;
-    }
-
-    public Patient passportNumber(String passportNumber) {
-        this.setPassportNumber(passportNumber);
-        return this;
-    }
-
-    public void setPassportNumber(String passportNumber) {
-        this.passportNumber = passportNumber;
-    }
-
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -167,12 +131,10 @@ public class Patient implements Serializable {
     public String toString() {
         return "Patient{" +
             "id=" + getId() +
-            ", firstName='" + getFirstName() + "'" +
-            ", lastName='" + getLastName() + "'" +
+            ", name='" + getName() + "'" +
             ", phone='" + getPhone() + "'" +
             ", birthDate='" + getBirthDate() + "'" +
             ", citizenNumber='" + getCitizenNumber() + "'" +
-            ", passportNumber='" + getPassportNumber() + "'" +
             "}";
     }
 }

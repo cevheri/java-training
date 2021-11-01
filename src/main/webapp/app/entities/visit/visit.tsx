@@ -133,7 +133,7 @@ export const Visit = (props: RouteComponentProps<{ url: string }>) => {
                   <td>
                     <Translate contentKey={`javaTrainingApp.VisitType.${visit.type}`} />
                   </td>
-                  <td>{visit.patient ? <Link to={`patient/${visit.patient.id}`}>{visit.patient.firstName}</Link> : ''}</td>
+                  <td>{visit.patient ? <Link to={`patient/${visit.patient.id}`}>{visit.patient.name}</Link> : ''}</td>
                   <td>{visit.doctor ? <Link to={`doctor/${visit.doctor.id}`}>{visit.doctor.name}</Link> : ''}</td>
                   <td>{visit.department ? <Link to={`department/${visit.department.id}`}>{visit.department.name}</Link> : ''}</td>
                   <td className="text-right">

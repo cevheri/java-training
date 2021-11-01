@@ -141,7 +141,7 @@ export const VisitUpdate = (props: RouteComponentProps<{ id: string }>) => {
                 {patients
                   ? patients.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.firstName}
+                        {otherEntity.name}
                       </option>
                     ))
                   : null}

@@ -120,6 +120,9 @@ export const DepartmentUpdate = (props: RouteComponentProps<{ id: string }>) => 
                 name="description"
                 data-cy="description"
                 type="textarea"
+                validate={{
+                  maxLength: { value: 1000, message: translate('entity.validation.maxlength', { max: 1000 }) },
+                }}
               />
               <ValidatedField
                 label={translate('javaTrainingApp.department.active')}
