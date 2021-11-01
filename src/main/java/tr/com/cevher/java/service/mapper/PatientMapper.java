@@ -9,10 +9,8 @@ import tr.com.cevher.java.service.dto.PatientDTO;
  */
 @Mapper(componentModel = "spring", uses = {})
 public interface PatientMapper extends EntityMapper<PatientDTO, Patient> {
-    @Named("name")
+    @Named("id")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    @Mapping(target = "firstName", source = "firstName")
-    @Mapping(target = "lastName", source = "lastName")
-    PatientDTO toDtoName(Patient patient);
+    PatientDTO toDtoId(Patient patient);
 }

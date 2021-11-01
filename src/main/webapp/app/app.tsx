@@ -35,6 +35,7 @@ export const App = () => {
   const isOpenAPIEnabled = useAppSelector(state => state.applicationProfile.isOpenAPIEnabled);
 
   const paddingTop = '60px';
+  const padd = '120px';
   return (
     <Router basename={baseHref}>
       <div className="app-container" style={{ paddingTop }}>

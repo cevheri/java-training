@@ -31,13 +31,13 @@ export const PatientDetail = (props: RouteComponentProps<{ id: string }>) => {
           <dd>{patientEntity.id}</dd>
           <dt>
             <span id="firstName">
-              <Translate contentKey="javaTrainingApp.patient.firstName"></Translate>
+              <Translate contentKey="javaTrainingApp.patient.firstName">First Name</Translate>
             </span>
           </dt>
           <dd>{patientEntity.firstName}</dd>
           <dt>
             <span id="lastName">
-              <Translate contentKey="javaTrainingApp.patient.lastName"></Translate>
+              <Translate contentKey="javaTrainingApp.patient.lastName">Last Name</Translate>
             </span>
           </dt>
           <dd>{patientEntity.lastName}</dd>
@@ -63,7 +63,7 @@ export const PatientDetail = (props: RouteComponentProps<{ id: string }>) => {
           <dd>{patientEntity.citizenNumber}</dd>
           <dt>
             <span id="passportNumber">
-              <Translate contentKey="javaTrainingApp.patient.passportNumber">Citizen Number</Translate>
+              <Translate contentKey="javaTrainingApp.patient.passportNumber">Passport Number</Translate>
             </span>
           </dt>
           <dd>{patientEntity.passportNumber}</dd>

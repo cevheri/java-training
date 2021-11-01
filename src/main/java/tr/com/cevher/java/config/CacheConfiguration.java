@@ -59,6 +59,7 @@ public class CacheConfiguration {
             createCache(cm, tr.com.cevher.java.domain.Visit.class.getName() + ".visitServices");
             createCache(cm, tr.com.cevher.java.domain.SystemSetup.class.getName());
             createCache(cm, tr.com.cevher.java.domain.Products.class.getName());
+            createCache(cm, tr.com.cevher.java.domain.Company.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

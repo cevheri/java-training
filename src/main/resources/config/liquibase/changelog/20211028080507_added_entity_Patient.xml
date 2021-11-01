@@ -14,10 +14,10 @@
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="first_Name" type="varchar(100)">
+            <column name="first_name" type="varchar(100)">
                 <constraints nullable="false" />
             </column>
-            <column name="last_Name" type="varchar(100)">
+            <column name="last_name" type="varchar(100)">
                 <constraints nullable="false" />
             </column>
             <column name="phone" type="varchar(20)">
@@ -53,8 +53,8 @@
                   tableName="patient"
                   usePreparedStatements="true">
             <column name="id" type="numeric"/>
-            <column name="first_Name" type="string"/>
-            <column name="last_Name" type="string"/>
+            <column name="first_name" type="string"/>
+            <column name="last_name" type="string"/>
             <column name="phone" type="string"/>
             <column name="birth_date" type="date"/>
             <column name="citizen_number" type="string"/>

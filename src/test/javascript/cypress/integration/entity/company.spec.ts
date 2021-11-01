@@ -11,14 +11,14 @@ import {
   entityConfirmDeleteButtonSelector,
 } from '../../support/entity';
 
-describe('Patient e2e test', () => {
-  const patientPageUrl = '/patient';
-  const patientPageUrlPattern = new RegExp('/patient(\\?.*)?$');
+describe('Company e2e test', () => {
+  const companyPageUrl = '/company';
+  const companyPageUrlPattern = new RegExp('/company(\\?.*)?$');
   const username = Cypress.env('E2E_USERNAME') ?? 'admin';
   const password = Cypress.env('E2E_PASSWORD') ?? 'admin';
-  const patientSample = { firstName: 'Krystel', lastName: 'Kub', citizenNumber: 'Soap', passportNumber: 'markets vir' };
+  const companySample = {};
 
-  let patient: any;
+  let company: any;
 
   before(() => {
     cy.window().then(win => {
@@ -30,25 +30,25 @@ describe('Patient e2e test', () => {
   });
 
   beforeEach(() => {
-    cy.intercept('GET', '/api/patients+(?*|)').as('entitiesRequest');
-    cy.intercept('POST', '/api/patients').as('postEntityRequest');
-    cy.intercept('DELETE', '/api/patients/*').as('deleteEntityRequest');
+    cy.intercept('GET', '/api/companies+(?*|)').as('entitiesRequest');
+    cy.intercept('POST', '/api/companies').as('postEntityRequest');
+    cy.intercept('DELETE', '/api/companies/*').as('deleteEntityRequest');
   });
 
   afterEach(() => {
-    if (patient) {
+    if (company) {
       cy.authenticatedRequest({
         method: 'DELETE',
-        url: `/api/patients/${patient.id}`,
+        url: `/api/companies/${company.id}`,
       }).then(() => {
-        patient = undefined;
+        company = undefined;
       });
     }
   });
 
-  it('Patients menu should load Patients page', () => {
+  it('Companies menu should load Companies page', () => {
     cy.visit('/');
-    cy.clickOnEntityMenuItem('patient');
+    cy.clickOnEntityMenuItem('company');
     cy.wait('@entitiesRequest').then(({ response }) => {
       if (response!.body.length === 0) {
         cy.get(entityTableSelector).should('not.exist');
@@ -56,27 +56,27 @@ describe('Patient e2e test', () => {
         cy.get(entityTableSelector).should('exist');
       }
     });
-    cy.getEntityHeading('Patient').should('exist');
-    cy.url().should('match', patientPageUrlPattern);
+    cy.getEntityHeading('Company').should('exist');
+    cy.url().should('match', companyPageUrlPattern);
   });
 
-  describe('Patient page', () => {
+  describe('Company page', () => {
     describe('create button click', () => {
       beforeEach(() => {
-        cy.visit(patientPageUrl);
+        cy.visit(companyPageUrl);
         cy.wait('@entitiesRequest');
       });
 
-      it('should load create Patient page', () => {
+      it('should load create Company page', () => {
         cy.get(entityCreateButtonSelector).click({ force: true });
-        cy.url().should('match', new RegExp('/patient/new$'));
-        cy.getEntityCreateUpdateHeading('Patient');
+        cy.url().should('match', new RegExp('/company/new$'));
+        cy.getEntityCreateUpdateHeading('Company');
         cy.get(entityCreateSaveButtonSelector).should('exist');
         cy.get(entityCreateCancelButtonSelector).click({ force: true });
         cy.wait('@entitiesRequest').then(({ response }) => {
           expect(response!.statusCode).to.equal(200);
         });
-        cy.url().should('match', patientPageUrlPattern);
+        cy.url().should('match', companyPageUrlPattern);
       });
     });
 
@@ -84,55 +84,55 @@ describe('Patient e2e test', () => {
       beforeEach(() => {
         cy.authenticatedRequest({
           method: 'POST',
-          url: '/api/patients',
-          body: patientSample,
+          url: '/api/companies',
+          body: companySample,
         }).then(({ body }) => {
-          patient = body;
+          company = body;
 
           cy.intercept(
             {
               method: 'GET',
-              url: '/api/patients+(?*|)',
+              url: '/api/companies+(?*|)',
               times: 1,
             },
             {
               statusCode: 200,
-              body: [patient],
+              body: [company],
             }
           ).as('entitiesRequestInternal');
         });
 
-        cy.visit(patientPageUrl);
+        cy.visit(companyPageUrl);
 
         cy.wait('@entitiesRequestInternal');
       });
 
-      it('detail button click should load details Patient page', () => {
+      it('detail button click should load details Company page', () => {
         cy.get(entityDetailsButtonSelector).first().click();
-        cy.getEntityDetailsHeading('patient');
+        cy.getEntityDetailsHeading('company');
         cy.get(entityDetailsBackButtonSelector).click({ force: true });
         cy.wait('@entitiesRequest').then(({ response }) => {
           expect(response!.statusCode).to.equal(200);
         });
-        cy.url().should('match', patientPageUrlPattern);
+        cy.url().should('match', companyPageUrlPattern);
       });
 
-      it('edit button click should load edit Patient page', () => {
+      it('edit button click should load edit Company page', () => {
         cy.get(entityEditButtonSelector).first().click();
-        cy.getEntityCreateUpdateHeading('Patient');
+        cy.getEntityCreateUpdateHeading('Company');
         cy.get(entityCreateSaveButtonSelector).should('exist');
         cy.get(entityCreateCancelButtonSelector).click({ force: true });
         cy.wait('@entitiesRequest').then(({ response }) => {
           expect(response!.statusCode).to.equal(200);
         });
-        cy.url().should('match', patientPageUrlPattern);
+        cy.url().should('match', companyPageUrlPattern);
       });
 
-      it('last delete button click should delete instance of Patient', () => {
-        cy.intercept('GET', '/api/patients/*').as('dialogDeleteRequest');
+      it('last delete button click should delete instance of Company', () => {
+        cy.intercept('GET', '/api/companies/*').as('dialogDeleteRequest');
         cy.get(entityDeleteButtonSelector).last().click();
         cy.wait('@dialogDeleteRequest');
-        cy.getEntityDeleteDialogHeading('patient').should('exist');
+        cy.getEntityDeleteDialogHeading('company').should('exist');
         cy.get(entityConfirmDeleteButtonSelector).click({ force: true });
         cy.wait('@deleteEntityRequest').then(({ response }) => {
           expect(response!.statusCode).to.equal(204);
@@ -140,43 +140,38 @@ describe('Patient e2e test', () => {
         cy.wait('@entitiesRequest').then(({ response }) => {
           expect(response!.statusCode).to.equal(200);
         });
-        cy.url().should('match', patientPageUrlPattern);
+        cy.url().should('match', companyPageUrlPattern);
 
-        patient = undefined;
+        company = undefined;
       });
     });
   });
 
-  describe('new Patient page', () => {
+  describe('new Company page', () => {
     beforeEach(() => {
-      cy.visit(`${patientPageUrl}`);
+      cy.visit(`${companyPageUrl}`);
       cy.get(entityCreateButtonSelector).click({ force: true });
-      cy.getEntityCreateUpdateHeading('Patient');
+      cy.getEntityCreateUpdateHeading('Company');
     });
 
-    it('should create an instance of Patient', () => {
-      cy.get(`[data-cy="firstName"]`).type('Augusta').should('have.value', 'Augusta');
+    it('should create an instance of Company', () => {
+      cy.get(`[data-cy="name"]`).type('Polarised B2C Consultant').should('have.value', 'Polarised B2C Consultant');
 
-      cy.get(`[data-cy="lastName"]`).type('Stark').should('have.value', 'Stark');
+      cy.get(`[data-cy="description"]`).type('ADP').should('have.value', 'ADP');
 
-      cy.get(`[data-cy="phone"]`).type('714.747.4712 x8547').should('have.value', '714.747.4712 x8547');
-
-      cy.get(`[data-cy="birthDate"]`).type('2021-10-28').should('have.value', '2021-10-28');
-
-      cy.get(`[data-cy="citizenNumber"]`).type('TCP white').should('have.value', 'TCP white');
-
-      cy.get(`[data-cy="passportNumber"]`).type('Checking').should('have.value', 'Checking');
+      cy.get(`[data-cy="isActive"]`).should('not.be.checked');
+      cy.get(`[data-cy="isActive"]`).click().should('be.checked');
 
       cy.get(entityCreateSaveButtonSelector).click();
 
       cy.wait('@postEntityRequest').then(({ response }) => {
         expect(response!.statusCode).to.equal(201);
-        patient = response!.body;
+        company = response!.body;
       });
       cy.wait('@entitiesRequest').then(({ response }) => {
         expect(response!.statusCode).to.equal(200);
       });
-      cy.url().should('match', patientPageUrlPattern);
+      cy.url().should('match', companyPageUrlPattern);
     });
   });
 });

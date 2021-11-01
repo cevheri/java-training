@@ -33,8 +33,11 @@ import tr.com.cevher.java.service.mapper.PatientMapper;
 @WithMockUser
 class PatientResourceIT {
 
-    private static final String DEFAULT_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_NAME = "BBBBBBBBBB";
+    private static final String DEFAULT_FIRST_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_FIRST_NAME = "BBBBBBBBBB";
+
+    private static final String DEFAULT_LAST_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_LAST_NAME = "BBBBBBBBBB";
 
     private static final String DEFAULT_PHONE = "AAAAAAAAAA";
     private static final String UPDATED_PHONE = "BBBBBBBBBB";
@@ -44,6 +47,9 @@ class PatientResourceIT {
 
     private static final String DEFAULT_CITIZEN_NUMBER = "AAAAAAAAAA";
     private static final String UPDATED_CITIZEN_NUMBER = "BBBBBBBBBB";
+
+    private static final String DEFAULT_PASSPORT_NUMBER = "AAAAAAAAAA";
+    private static final String UPDATED_PASSPORT_NUMBER = "BBBBBBBBBB";
 
     private static final String ENTITY_API_URL = "/api/patients";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -73,10 +79,12 @@ class PatientResourceIT {
      */
     public static Patient createEntity(EntityManager em) {
         Patient patient = new Patient()
-            .name(DEFAULT_NAME)
+            .firstName(DEFAULT_FIRST_NAME)
+            .lastName(DEFAULT_LAST_NAME)
             .phone(DEFAULT_PHONE)
             .birthDate(DEFAULT_BIRTH_DATE)
-            .citizenNumber(DEFAULT_CITIZEN_NUMBER);
+            .citizenNumber(DEFAULT_CITIZEN_NUMBER)
+            .passportNumber(DEFAULT_PASSPORT_NUMBER);
         return patient;
     }
 
@@ -88,10 +96,12 @@ class PatientResourceIT {
      */
     public static Patient createUpdatedEntity(EntityManager em) {
         Patient patient = new Patient()
-            .name(UPDATED_NAME)
+            .firstName(UPDATED_FIRST_NAME)
+            .lastName(UPDATED_LAST_NAME)
             .phone(UPDATED_PHONE)
             .birthDate(UPDATED_BIRTH_DATE)
-            .citizenNumber(UPDATED_CITIZEN_NUMBER);
+            .citizenNumber(UPDATED_CITIZEN_NUMBER)
+            .passportNumber(UPDATED_PASSPORT_NUMBER);
         return patient;
     }
 
@@ -114,10 +124,12 @@ class PatientResourceIT {
         List<Patient> patientList = patientRepository.findAll();
         assertThat(patientList).hasSize(databaseSizeBeforeCreate + 1);
         Patient testPatient = patientList.get(patientList.size() - 1);
-        assertThat(testPatient.getFirstName()).isEqualTo(DEFAULT_NAME);
+        assertThat(testPatient.getFirstName()).isEqualTo(DEFAULT_FIRST_NAME);
+        assertThat(testPatient.getLastName()).isEqualTo(DEFAULT_LAST_NAME);
         assertThat(testPatient.getPhone()).isEqualTo(DEFAULT_PHONE);
         assertThat(testPatient.getBirthDate()).isEqualTo(DEFAULT_BIRTH_DATE);
         assertThat(testPatient.getCitizenNumber()).isEqualTo(DEFAULT_CITIZEN_NUMBER);
+        assertThat(testPatient.getPassportNumber()).isEqualTo(DEFAULT_PASSPORT_NUMBER);
     }
 
     @Test
@@ -141,10 +153,28 @@ class PatientResourceIT {
 
     @Test
     @Transactional
-    void checkNameIsRequired() throws Exception {
+    void checkFirstNameIsRequired() throws Exception {
         int databaseSizeBeforeTest = patientRepository.findAll().size();
         // set the field null
         patient.setFirstName(null);
+
+        // Create the Patient, which fails.
+        PatientDTO patientDTO = patientMapper.toDto(patient);
+
+        restPatientMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(patientDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Patient> patientList = patientRepository.findAll();
+        assertThat(patientList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    void checkLastNameIsRequired() throws Exception {
+        int databaseSizeBeforeTest = patientRepository.findAll().size();
+        // set the field null
+        patient.setLastName(null);
 
         // Create the Patient, which fails.
         PatientDTO patientDTO = patientMapper.toDto(patient);
@@ -177,6 +207,24 @@ class PatientResourceIT {
 
     @Test
     @Transactional
+    void checkPassportNumberIsRequired() throws Exception {
+        int databaseSizeBeforeTest = patientRepository.findAll().size();
+        // set the field null
+        patient.setPassportNumber(null);
+
+        // Create the Patient, which fails.
+        PatientDTO patientDTO = patientMapper.toDto(patient);
+
+        restPatientMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(patientDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Patient> patientList = patientRepository.findAll();
+        assertThat(patientList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     void getAllPatients() throws Exception {
         // Initialize the database
         patientRepository.saveAndFlush(patient);
@@ -187,10 +235,12 @@ class PatientResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(patient.getId().intValue())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
+            .andExpect(jsonPath("$.[*].firstName").value(hasItem(DEFAULT_FIRST_NAME)))
+            .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME)))
             .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE)))
             .andExpect(jsonPath("$.[*].birthDate").value(hasItem(DEFAULT_BIRTH_DATE.toString())))
-            .andExpect(jsonPath("$.[*].citizenNumber").value(hasItem(DEFAULT_CITIZEN_NUMBER)));
+            .andExpect(jsonPath("$.[*].citizenNumber").value(hasItem(DEFAULT_CITIZEN_NUMBER)))
+            .andExpect(jsonPath("$.[*].passportNumber").value(hasItem(DEFAULT_PASSPORT_NUMBER)));
     }
 
     @Test
@@ -205,10 +255,12 @@ class PatientResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(patient.getId().intValue()))
-            .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
+            .andExpect(jsonPath("$.firstName").value(DEFAULT_FIRST_NAME))
+            .andExpect(jsonPath("$.lastName").value(DEFAULT_LAST_NAME))
             .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE))
             .andExpect(jsonPath("$.birthDate").value(DEFAULT_BIRTH_DATE.toString()))
-            .andExpect(jsonPath("$.citizenNumber").value(DEFAULT_CITIZEN_NUMBER));
+            .andExpect(jsonPath("$.citizenNumber").value(DEFAULT_CITIZEN_NUMBER))
+            .andExpect(jsonPath("$.passportNumber").value(DEFAULT_PASSPORT_NUMBER));
     }
 
     @Test
@@ -230,7 +282,13 @@ class PatientResourceIT {
         Patient updatedPatient = patientRepository.findById(patient.getId()).get();
         // Disconnect from session so that the updates on updatedPatient are not directly saved in db
         em.detach(updatedPatient);
-        updatedPatient.name(UPDATED_NAME).phone(UPDATED_PHONE).birthDate(UPDATED_BIRTH_DATE).citizenNumber(UPDATED_CITIZEN_NUMBER);
+        updatedPatient
+            .firstName(UPDATED_FIRST_NAME)
+            .lastName(UPDATED_LAST_NAME)
+            .phone(UPDATED_PHONE)
+            .birthDate(UPDATED_BIRTH_DATE)
+            .citizenNumber(UPDATED_CITIZEN_NUMBER)
+            .passportNumber(UPDATED_PASSPORT_NUMBER);
         PatientDTO patientDTO = patientMapper.toDto(updatedPatient);
 
         restPatientMockMvc
@@ -245,10 +303,12 @@ class PatientResourceIT {
         List<Patient> patientList = patientRepository.findAll();
         assertThat(patientList).hasSize(databaseSizeBeforeUpdate);
         Patient testPatient = patientList.get(patientList.size() - 1);
-        assertThat(testPatient.getFirstName()).isEqualTo(UPDATED_NAME);
+        assertThat(testPatient.getFirstName()).isEqualTo(UPDATED_FIRST_NAME);
+        assertThat(testPatient.getLastName()).isEqualTo(UPDATED_LAST_NAME);
         assertThat(testPatient.getPhone()).isEqualTo(UPDATED_PHONE);
         assertThat(testPatient.getBirthDate()).isEqualTo(UPDATED_BIRTH_DATE);
         assertThat(testPatient.getCitizenNumber()).isEqualTo(UPDATED_CITIZEN_NUMBER);
+        assertThat(testPatient.getPassportNumber()).isEqualTo(UPDATED_PASSPORT_NUMBER);
     }
 
     @Test
@@ -328,7 +388,12 @@ class PatientResourceIT {
         Patient partialUpdatedPatient = new Patient();
         partialUpdatedPatient.setId(patient.getId());
 
-        partialUpdatedPatient.name(UPDATED_NAME).phone(UPDATED_PHONE).birthDate(UPDATED_BIRTH_DATE).citizenNumber(UPDATED_CITIZEN_NUMBER);
+        partialUpdatedPatient
+            .firstName(UPDATED_FIRST_NAME)
+            .lastName(UPDATED_LAST_NAME)
+            .phone(UPDATED_PHONE)
+            .birthDate(UPDATED_BIRTH_DATE)
+            .passportNumber(UPDATED_PASSPORT_NUMBER);
 
         restPatientMockMvc
             .perform(
@@ -342,10 +407,12 @@ class PatientResourceIT {
         List<Patient> patientList = patientRepository.findAll();
         assertThat(patientList).hasSize(databaseSizeBeforeUpdate);
         Patient testPatient = patientList.get(patientList.size() - 1);
-        assertThat(testPatient.getFirstName()).isEqualTo(UPDATED_NAME);
+        assertThat(testPatient.getFirstName()).isEqualTo(UPDATED_FIRST_NAME);
+        assertThat(testPatient.getLastName()).isEqualTo(UPDATED_LAST_NAME);
         assertThat(testPatient.getPhone()).isEqualTo(UPDATED_PHONE);
         assertThat(testPatient.getBirthDate()).isEqualTo(UPDATED_BIRTH_DATE);
-        assertThat(testPatient.getCitizenNumber()).isEqualTo(UPDATED_CITIZEN_NUMBER);
+        assertThat(testPatient.getCitizenNumber()).isEqualTo(DEFAULT_CITIZEN_NUMBER);
+        assertThat(testPatient.getPassportNumber()).isEqualTo(UPDATED_PASSPORT_NUMBER);
     }
 
     @Test
@@ -360,7 +427,13 @@ class PatientResourceIT {
         Patient partialUpdatedPatient = new Patient();
         partialUpdatedPatient.setId(patient.getId());
 
-        partialUpdatedPatient.name(UPDATED_NAME).phone(UPDATED_PHONE).birthDate(UPDATED_BIRTH_DATE).citizenNumber(UPDATED_CITIZEN_NUMBER);
+        partialUpdatedPatient
+            .firstName(UPDATED_FIRST_NAME)
+            .lastName(UPDATED_LAST_NAME)
+            .phone(UPDATED_PHONE)
+            .birthDate(UPDATED_BIRTH_DATE)
+            .citizenNumber(UPDATED_CITIZEN_NUMBER)
+            .passportNumber(UPDATED_PASSPORT_NUMBER);
 
         restPatientMockMvc
             .perform(
@@ -374,10 +447,12 @@ class PatientResourceIT {
         List<Patient> patientList = patientRepository.findAll();
         assertThat(patientList).hasSize(databaseSizeBeforeUpdate);
         Patient testPatient = patientList.get(patientList.size() - 1);
-        assertThat(testPatient.getFirstName()).isEqualTo(UPDATED_NAME);
+        assertThat(testPatient.getFirstName()).isEqualTo(UPDATED_FIRST_NAME);
+        assertThat(testPatient.getLastName()).isEqualTo(UPDATED_LAST_NAME);
         assertThat(testPatient.getPhone()).isEqualTo(UPDATED_PHONE);
         assertThat(testPatient.getBirthDate()).isEqualTo(UPDATED_BIRTH_DATE);
         assertThat(testPatient.getCitizenNumber()).isEqualTo(UPDATED_CITIZEN_NUMBER);
+        assertThat(testPatient.getPassportNumber()).isEqualTo(UPDATED_PASSPORT_NUMBER);
     }
 
     @Test

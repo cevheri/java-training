@@ -10,7 +10,7 @@ import tr.com.cevher.java.service.dto.VisitDTO;
  */
 @Mapper(componentModel = "spring", uses = { PatientMapper.class, DoctorMapper.class, DepartmentMapper.class, VisitServiceMapper.class })
 public interface VisitMapper extends EntityMapper<VisitDTO, Visit> {
-    @Mapping(target = "patient", source = "patient", qualifiedByName = "name")
+    @Mapping(target = "patient", source = "patient", qualifiedByName = "id")
     @Mapping(target = "doctor", source = "doctor", qualifiedByName = "name")
     @Mapping(target = "department", source = "department", qualifiedByName = "name")
     @Mapping(target = "visitServices", source = "visitServices", qualifiedByName = "nameSet")
