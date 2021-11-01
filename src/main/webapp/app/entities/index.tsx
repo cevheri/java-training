@@ -10,6 +10,7 @@ import Doctor from './doctor';
 import VisitService from './visit-service';
 import Visit from './visit';
 import SystemSetup from './system-setup';
+import Products from './products';
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
 const Routes = ({ match }) => (
@@ -22,6 +23,7 @@ const Routes = ({ match }) => (
       <ErrorBoundaryRoute path={`${match.url}visit-service`} component={VisitService} />
       <ErrorBoundaryRoute path={`${match.url}visit`} component={Visit} />
       <ErrorBoundaryRoute path={`${match.url}system-setup`} component={SystemSetup} />
+      <ErrorBoundaryRoute path={`${match.url}products`} component={Products} />
       {/* jhipster-needle-add-route-path - JHipster will add routes here */}
     </Switch>
   </div>

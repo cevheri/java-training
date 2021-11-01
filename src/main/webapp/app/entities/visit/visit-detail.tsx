@@ -44,7 +44,8 @@ export const VisitDetail = (props: RouteComponentProps<{ id: string }>) => {
           <dt>
             <Translate contentKey="javaTrainingApp.visit.patient">Patient</Translate>
           </dt>
-          <dd>{visitEntity.patient ? visitEntity.patient.name : ''}</dd>
+          <dd>{visitEntity.patient ? visitEntity.patient.firstName : ''}</dd>
+
           <dt>
             <Translate contentKey="javaTrainingApp.visit.doctor">Doctor</Translate>
           </dt>

@@ -4,26 +4,23 @@ import { Button, Row, Col, FormText } from 'reactstrap';
 import { isNumber, Translate, translate, ValidatedField, ValidatedForm } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { IVisit } from 'app/shared/model/visit.model';
-import { getEntities as getVisits } from 'app/entities/visit/visit.reducer';
-import { getEntity, updateEntity, createEntity, reset } from './visit-service.reducer';
-import { IVisitService } from 'app/shared/model/visit-service.model';
+import { getEntity, updateEntity, createEntity, reset } from './products.reducer';
+import { IProducts } from 'app/shared/model/products.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
-export const VisitServiceUpdate = (props: RouteComponentProps<{ id: string }>) => {
+export const ProductsUpdate = (props: RouteComponentProps<{ id: string }>) => {
   const dispatch = useAppDispatch();
 
   const [isNew] = useState(!props.match.params || !props.match.params.id);
 
-  const visits = useAppSelector(state => state.visit.entities);
-  const visitServiceEntity = useAppSelector(state => state.visitService.entity);
-  const loading = useAppSelector(state => state.visitService.loading);
-  const updating = useAppSelector(state => state.visitService.updating);
-  const updateSuccess = useAppSelector(state => state.visitService.updateSuccess);
+  const productsEntity = useAppSelector(state => state.products.entity);
+  const loading = useAppSelector(state => state.products.loading);
+  const updating = useAppSelector(state => state.products.updating);
+  const updateSuccess = useAppSelector(state => state.products.updateSuccess);
   const handleClose = () => {
-    props.history.push('/visit-service' + props.location.search);
+    props.history.push('/products');
   };
 
   useEffect(() => {
@@ -32,8 +29,6 @@ export const VisitServiceUpdate = (props: RouteComponentProps<{ id: string }>) =
     } else {
       dispatch(getEntity(props.match.params.id));
     }
-
-    dispatch(getVisits({}));
   }, []);
 
   useEffect(() => {
@@ -44,7 +39,7 @@ export const VisitServiceUpdate = (props: RouteComponentProps<{ id: string }>) =
 
   const saveEntity = values => {
     const entity = {
-      ...visitServiceEntity,
+      ...productsEntity,
       ...values,
     };
 
@@ -59,15 +54,15 @@ export const VisitServiceUpdate = (props: RouteComponentProps<{ id: string }>) =
     isNew
       ? {}
       : {
-          ...visitServiceEntity,
+          ...productsEntity,
         };
 
   return (
     <div>
       <Row className="justify-content-center">
         <Col md="8">
-          <h2 id="javaTrainingApp.visitService.home.createOrEditLabel" data-cy="VisitServiceCreateUpdateHeading">
-            <Translate contentKey="javaTrainingApp.visitService.home.createOrEditLabel">Create or edit a VisitService</Translate>
+          <h2 id="javaTrainingApp.products.home.createOrEditLabel" data-cy="ProductsCreateUpdateHeading">
+            <Translate contentKey="javaTrainingApp.products.home.createOrEditLabel">Create or edit a Products</Translate>
           </h2>
         </Col>
       </Row>
@@ -82,48 +77,40 @@ export const VisitServiceUpdate = (props: RouteComponentProps<{ id: string }>) =
                   name="id"
                   required
                   readOnly
-                  id="visit-service-id"
+                  id="products-id"
                   label={translate('global.field.id')}
                   validate={{ required: true }}
                 />
               ) : null}
               <ValidatedField
-                label={translate('javaTrainingApp.visitService.name')}
-                id="visit-service-name"
+                label={translate('javaTrainingApp.products.name')}
+                id="products-name"
                 name="name"
                 data-cy="name"
                 type="text"
-                validate={{
-                  required: { value: true, message: translate('entity.validation.required') },
-                  maxLength: { value: 200, message: translate('entity.validation.maxlength', { max: 200 }) },
-                }}
               />
               <ValidatedField
-                label={translate('javaTrainingApp.visitService.description')}
-                id="visit-service-description"
-                name="description"
-                data-cy="description"
+                label={translate('javaTrainingApp.products.category')}
+                id="products-category"
+                name="category"
+                data-cy="category"
                 type="text"
-                validate={{
-                  maxLength: { value: 1000, message: translate('entity.validation.maxlength', { max: 1000 }) },
-                }}
               />
               <ValidatedField
-                label={translate('javaTrainingApp.visitService.active')}
-                id="visit-service-active"
-                name="active"
-                data-cy="active"
-                check
-                type="checkbox"
-              />
-              <ValidatedField
-                label={translate('javaTrainingApp.visitService.price')}
-                id="visit-service-price"
+                label={translate('javaTrainingApp.products.price')}
+                id="products-price"
                 name="price"
                 data-cy="price"
                 type="text"
               />
-              <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/visit-service" replace color="info">
+              <ValidatedField
+                label={translate('javaTrainingApp.products.description')}
+                id="products-description"
+                name="description"
+                data-cy="description"
+                type="text"
+              />
+              <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/products" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
                 <span className="d-none d-md-inline">
@@ -144,4 +131,4 @@ export const VisitServiceUpdate = (props: RouteComponentProps<{ id: string }>) =
   );
 };
 
-export default VisitServiceUpdate;
+export default ProductsUpdate;

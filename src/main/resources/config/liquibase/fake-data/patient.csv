@@ -1,11 +1,11 @@
-id;name;phone;birth_date;citizen_number
-1;Steel infrastructures;794.659.3431 x46755;2021-10-28;backing Acc
-2;Kids reboot;307.863.6583;2021-10-28;transmittin
-3;Computer New port;(649) 637-2235;2021-10-28;Pants Omani
-4;Garden;938-811-3827;2021-10-28;Checking (K
-5;override Hat optimizing;1-201-541-9268;2021-10-27;HTTP
-6;technologies human-resource Plastic;714-335-0325 x6483;2021-10-27;Metal
-7;Movies bandwidth throughput;1-406-853-6985;2021-10-27;e-tailers B
-8;Directives Account Israel;(998) 822-3064 x3437;2021-10-28;Australian
-9;Sausages Hollow;403-747-0045;2021-10-28;Ergonomic
-10;harness Account Intelligent;434-939-0070 x3064;2021-10-28;content-bas
+id;first_Name;last_Name;phone;birth_date;citizen_number;passport_number
+1;Steel;infrastructures;794.659.3431 x46755;2021-10-28;backing Acc;12345678910
+2;Kids;reboot;307.863.6583;2021-10-28;transmittin;12345678910
+3;Computer; New port;(649) 637-2235;2021-10-28;Pants Omani;12345678910
+4;Garden;Arda;938-811-3827;2021-10-28;Checking (K;12345678910
+5;override; Hat optimizing;1-201-541-9268;2021-10-27;HTTP;12345678910
+6;technologies; human-resource Plastic;714-335-0325 x6483;2021-10-27;Metal;12345678910
+7;Movies; bandwidth throughput;1-406-853-6985;2021-10-27;e-tailers B;12345678910
+8;Directives; Account Israel;(998) 822-3064 x3437;2021-10-28;Australian;12345678910
+9;Sausages; Hollow;403-747-0045;2021-10-28;Ergonomic;12345678910
+10;harness; Account Intelligent;434-939-0070 x3064;2021-10-28;content-bas;12345678910

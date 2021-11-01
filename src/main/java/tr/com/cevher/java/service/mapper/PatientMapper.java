@@ -12,7 +12,7 @@ public interface PatientMapper extends EntityMapper<PatientDTO, Patient> {
     @Named("name")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    @Mapping(target = "name", source = "name")
-    @Mapping(target = "lastname", source = "lastname")
+    @Mapping(target = "firstName", source = "firstName")
+    @Mapping(target = "lastName", source = "lastName")
     PatientDTO toDtoName(Patient patient);
 }

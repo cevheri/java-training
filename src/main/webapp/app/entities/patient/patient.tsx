@@ -103,8 +103,11 @@ export const Patient = (props: RouteComponentProps<{ url: string }>) => {
                 <th className="hand" onClick={sort('id')}>
                   <Translate contentKey="javaTrainingApp.patient.id">ID</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
-                <th className="hand" onClick={sort('name')}>
-                  <Translate contentKey="javaTrainingApp.patient.name">Name</Translate> <FontAwesomeIcon icon="sort" />
+                <th className="hand" onClick={sort('firstName')}>
+                  <Translate contentKey="javaTrainingApp.patient.firstName">firstName</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th className="hand" onClick={sort('lastName')}>
+                  <Translate contentKey="javaTrainingApp.patient.lastName">lastname</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('phone')}>
                   <Translate contentKey="javaTrainingApp.patient.phone">Phone</Translate> <FontAwesomeIcon icon="sort" />
@@ -114,6 +117,9 @@ export const Patient = (props: RouteComponentProps<{ url: string }>) => {
                 </th>
                 <th className="hand" onClick={sort('citizenNumber')}>
                   <Translate contentKey="javaTrainingApp.patient.citizenNumber">Citizen Number</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th className="hand" onClick={sort('passportNumber')}>
+                  <Translate contentKey="javaTrainingApp.patient.passportNumber">Passport Number</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th />
               </tr>
@@ -126,11 +132,12 @@ export const Patient = (props: RouteComponentProps<{ url: string }>) => {
                       {patient.id}
                     </Button>
                   </td>
-                  <td>{patient.name}</td>
-                  <td>{patient.lastname}</td>
+                  <td>{patient.firstName}</td>
+                  <td>{patient.lastName}</td>
                   <td>{patient.phone}</td>
                   <td>{patient.birthDate ? <TextFormat type="date" value={patient.birthDate} format={APP_LOCAL_DATE_FORMAT} /> : null}</td>
                   <td>{patient.citizenNumber}</td>
+                  <td>{patient.passportNumber}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${patient.id}`} color="info" size="sm" data-cy="entityDetailsButton">
