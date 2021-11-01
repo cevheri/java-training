@@ -36,11 +36,6 @@ public class CacheConfiguration {
     }
 
     @Bean
-    public HibernatePropertiesCustomizer hibernatePropertiesCustomizer(javax.cache.CacheManager cacheManager) {
-        return hibernateProperties -> hibernateProperties.put(ConfigSettings.CACHE_MANAGER, cacheManager);
-    }
-
-    @Bean
     public JCacheManagerCustomizer cacheManagerCustomizer() {
         return cm -> {
             createCache(cm, tr.com.cevher.java.repository.UserRepository.USERS_BY_LOGIN_CACHE);
@@ -57,6 +52,7 @@ public class CacheConfiguration {
             createCache(cm, tr.com.cevher.java.domain.VisitService.class.getName() + ".visits");
             createCache(cm, tr.com.cevher.java.domain.Visit.class.getName());
             createCache(cm, tr.com.cevher.java.domain.Visit.class.getName() + ".visitServices");
+            createCache(cm, tr.com.cevher.java.domain.Company.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
