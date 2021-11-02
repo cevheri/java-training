@@ -43,7 +43,7 @@
     "clientThemeVariant": "",
     "languages": ["en", "tr"],
     "enableGradleEnterprise": false,
-    "entities": ["Patient", "Department", "Doctor", "VisitService", "Visit", "SystemSetup", "Products"],
-    "lastLiquibaseTimestamp": 1635679423000
+    "entities": ["Patient", "Department", "Doctor", "VisitService", "Visit", "SystemSetup", "Products", "Company"],
+    "lastLiquibaseTimestamp": 1635776572000
   }
 }
