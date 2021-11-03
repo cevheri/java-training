@@ -9,7 +9,7 @@
     <artifactId>java-training</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>Java Training</name>
+    <name>Okan Training</name>
     <description>Description for javaTraining</description>
 
     <repositories>
