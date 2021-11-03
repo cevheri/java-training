@@ -14,13 +14,13 @@
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="param_key" type="varchar(255)">
+            <column name="param_key" type="varchar(50)">
                 <constraints nullable="false" unique="true" uniqueConstraintName="ux_system_setup__param_key" />
             </column>
-            <column name="param_val" type="varchar(255)">
+            <column name="param_val" type="varchar(4000)">
                 <constraints nullable="true" />
             </column>
-            <column name="description" type="varchar(255)">
+            <column name="description" type="varchar(4000)">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
